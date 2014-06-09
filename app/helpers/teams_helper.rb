@@ -6,7 +6,7 @@ module TeamsHelper
 			unassigned_students.push(student.name)
 		end
 
-		num_teams = 5
+  		num_teams = params[:num].to_i
 		team_size = unassigned_students.count / num_teams
 
 		teams = []
@@ -24,8 +24,25 @@ module TeamsHelper
 			teams[index].push(students)
 		end
 	
-	return teams
-
+		return teams
 	end
 
+	def save_teams
+
+	    Team.destroy_all # discard any earlier teams
+
+	    if @teams != nil
+
+		    @teams.each do |team|
+			    # set rand num leader index
+		        # and ref 0 index to get string form
+
+		        @leader = rand(0...team.count)
+
+		        team[@leader] += '*'
+
+			    Team.create(members: team.join(', '))
+		    end
+		end
+  	end
 end

@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   
-  get 'teams/index' => "teams#index"
+  root "students#index"
 
+  get "teams/assigned_teams"
+
+  get "teams/num_teams"
+  
   resources :teams
 
   resources :students

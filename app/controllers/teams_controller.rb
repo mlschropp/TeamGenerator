@@ -1,14 +1,23 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
-
   include TeamsHelper
   # GET /teams
   # GET /teams.json
   
   def index
-    generate_teams
+    @team = Team.all
   end
 
+  def num_teams
+  end
+
+  def assigned_teams
+     if params[:num].to_i > 0
+       @teams = generate_teams
+     else
+       @teams = nil
+     end
+  end
   # GET /teams/1
   # GET /teams/1.json
   def show

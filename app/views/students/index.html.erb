@@ -1,15 +1,14 @@
-<h1>Listing students</h1>
 
-<table>
-  <thead>
-    <tr>
+  <tr>
+    <td align="center" colspan="5"><h1>Listing Students</h1>
+    </td>
+  </tr>
+  <tr>
       <th>Name</th>
       <th>Email</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+      <th colspan="2"></th>
+  </tr>
 
-  <tbody>
     <% @students.each do |student| %>
       <tr>
         <td><%= student.name %></td>
@@ -17,11 +16,21 @@
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+ 
     <% end %>
-  </tbody>
-</table>
+  </tr>
+  <tr>
+  <td align="center" height="80" colspan="2">
+      <div class="green-btn one-row three_btns">
+    <%= link_to 'New Student', "/students/new" %>
+      </div>
+    <div class="green-btn one-row three_btns">
+    <%= link_to 'Assigned Teams', "/teams/assigned_teams" %>
+      </div>
+  </td>
+  </tr>
 
-<br>
 
-<%= link_to 'New Student', new_student_path %>
+
+
+
